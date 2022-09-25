@@ -5,7 +5,7 @@ from telegram.ext.commandhandler import CommandHandler
 from telegram.ext.messagehandler import MessageHandler
 from telegram.ext.filters import Filters
 PORT = int(os.environ.get('PORT', 5000))
-TOKEN = "5637192348:AAF-Bq-vzG1Y3V1JocC5pirMCy9JolFNm3c"
+TOKEN = "YOURTOKENHERE"
 
 # Enable logging
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
