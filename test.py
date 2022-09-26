@@ -216,7 +216,7 @@ def error(update, context):
 
 
 def main():
-    updater = Updater("5637192348:AAF-Bq-vzG1Y3V1JocC5pirMCy9JolFNm3c", use_context=True)
+    updater = Updater("YOURTOKENHERE", use_context=True)
 
     dp = updater.dispatcher
 
