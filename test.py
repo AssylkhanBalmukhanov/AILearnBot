@@ -16,24 +16,8 @@ logger = logging.getLogger(__name__)
 # hello
 def start(update, context):
     update.message.reply_text("Hello! Any questions? Type /help ")
-
-
+ 
 # help
-
-#image
-def image(update,context):
-    chat_id = update.message.chat_id
-    pic = open('Math_for_ML.pdf', 'rb')
-    update.message.reply_text("""There are 4 main topics used in AI:
-    Linear algebra
-    Probability theory
-    Multivariate calculus
-    Optimization theory
-    Here is awesome book that covers math these topics""")
-    context.bot.send_document(chat_id, doc)
-
-
-#
 def help(update, context):
     update.message.reply_text("""Available commands: 
 /ForBeginners (No Programming experience)
@@ -44,6 +28,8 @@ def help(update, context):
 /Courses""")
 
 
+
+ 
 # Option one (Brief information about AI)
 
 def what_is_ai(update, context):
