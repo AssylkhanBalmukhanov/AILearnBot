@@ -4,11 +4,12 @@ from telegram.ext.updater import Updater
 from telegram.ext.commandhandler import CommandHandler
 from telegram.ext.messagehandler import MessageHandler
 from telegram.ext.filters import Filters
+
 PORT = int(os.environ.get('PORT', 5000))
-TOKEN = "YOURTOKENHERE"
 
 # Enable logging
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
+TOKEN = "YOURTOKENHERE"
 
 logger = logging.getLogger(__name__)
 
@@ -16,8 +17,10 @@ logger = logging.getLogger(__name__)
 # hello
 def start(update, context):
     update.message.reply_text("Hello! Any questions? Type /help ")
- 
+
+
 # help
+
 def help(update, context):
     update.message.reply_text("""Available commands: 
 /ForBeginners (No Programming experience)
@@ -25,11 +28,12 @@ def help(update, context):
 /Algorithms
 /MathBook 
 /Curriculum 
-/Courses""")
+/Courses
+/Resources
+/Contact_me
+/Buy_me_a_coffee""")
 
 
-
- 
 # Option one (Brief information about AI)
 
 def what_is_ai(update, context):
@@ -206,6 +210,27 @@ https://www.youtube.com/watch?v=2SpuBqvNjHI - If you feel, that you need more ma
 """)
 
 
+# Other resources
+
+def resources(update, context):
+    update.message.reply_text(""" 
+https://towardsdatascience.com/ - Website with a lot of articles 
+https://www.geeksforgeeks.org/ - Website with a lot of explanations on different topics
+https://kaggle.com/ - Websites with datasets and competitons""")
+
+#Donate
+def donate(update, context):
+    update.message.reply_text(""" 
+If you want to support me 
+https://www.donationalerts.com/r/ailearnbot""")
+
+
+#contact
+
+def contact(update, context):
+    update.message.reply_text(""" 
+If you want to contact me - @contactauthor""")
+
 # if command is unknown
 def unknown_text(update, context):
     update.message.reply_text("Sorry I can't recognize you , you said '%s'" % update.message.text)
@@ -251,12 +276,22 @@ def main():
 
     dp.add_handler(CommandHandler("Courses", courses))
 
+    dp.add_handler(CommandHandler("Buy_me_a_coffee", donate))
+
+    dp.add_handler(CommandHandler("Contact_me", contact))
+
+    dp.add_handler(CommandHandler("Resources", resources))
+
     dp.add_handler(MessageHandler(Filters.text, unknown_text))
+
 
     updater.start_webhook(listen="0.0.0.0",
                           port=int(PORT),
                           url_path=TOKEN)
-    updater.bot.setWebhook('https://yourherokuappname.herokuapp.com/' + TOKEN)
+    updater.bot.setWebhook('https://yourappname.herokuapp.com/' + TOKEN)
+
+    updater.idle()
+
 
 if __name__ == '__main__':
     main()
